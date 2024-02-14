@@ -1,0 +1,3 @@
+interface isActiveProps {
+  isActive: boolean;
+}
