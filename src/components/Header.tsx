@@ -33,14 +33,18 @@ const Header = () => {
             <input
               type="text"
               placeholder="Search Products..."
-              className="bg-slate-100 w-72 py-2 px-4 outline-slate-300 rounded-md"
+              className="w-72 py-2 px-4 outline-slate-300 rounded-md"
             />
           </div>
           <div className="flex gap-4 items-center">
             {/* theme button */}
             <span>
-              <Button className="w-12 h-12 flex" onClick={handleThemeToggle}>
-                {theme === "light" ? <IoSunnyOutline /> : <GoMoon />}
+              <Button className="flex" onClick={handleThemeToggle} size="sm">
+                {theme === "light" ? (
+                  <IoSunnyOutline size="20" />
+                ) : (
+                  <GoMoon size="20" />
+                )}
               </Button>
             </span>
 
