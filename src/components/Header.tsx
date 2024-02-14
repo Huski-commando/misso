@@ -1,13 +1,26 @@
 import { Link, NavLink } from "react-router-dom";
 import Logo from "./Logo";
 import { IoSunnyOutline } from "react-icons/io5";
+import { GoMoon } from "react-icons/go";
 import MobileNav from "./MobileNav";
+import { isActiveProps } from "@/lib/types";
+import { useAppDispatch, useAppSelector } from "@/customHooks/hooks";
+import { Button } from "./ui/button";
+import { toggleTheme } from "@/redux/theme/themeSlice";
 
 const Header = () => {
   const activeClasses = ({ isActive }: isActiveProps) =>
     isActive
       ? `text-transparent bg-clip-text bg-gradient-to-br from-emerald-600 from-10% via-sky-500 via-50% to-emerald-500 to-80% italic`
       : ``;
+
+  const { theme } = useAppSelector((state) => state.theme);
+
+  const dispatch = useAppDispatch();
+
+  const handleThemeToggle = () => {
+    dispatch(toggleTheme());
+  };
 
   return (
     <header className="border-b">
@@ -24,9 +37,14 @@ const Header = () => {
             />
           </div>
           <div className="flex gap-4 items-center">
+            {/* theme button */}
             <span>
-              <IoSunnyOutline />
+              <Button className="w-12 h-12 flex" onClick={handleThemeToggle}>
+                {theme === "light" ? <IoSunnyOutline /> : <GoMoon />}
+              </Button>
             </span>
+
+            {/* navbar items */}
             <span className="space-x-4 hidden lg:flex">
               <NavLink to="/" className={activeClasses}>
                 Home
